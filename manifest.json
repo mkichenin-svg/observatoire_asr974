@@ -17,11 +17,8 @@
     "app/app.R": {
       "checksum": "bcd168ad83a1317760285fd26f45a951"
     },
-    "app/dash.R": {
-      "checksum": "b946d2b6c92eec92f1e639a4d35d67d6"
-    },
     "app2/dash.R": {
-      "checksum": "fae95f385598935030ebb7c73b2fdcac"
+      "checksum": "3e531c706fa290462df0b3cad64fa54f"
     },
     "expansions.csv": {
       "checksum": "2c12cdc786ec26f4516dc29050cd285b"
@@ -31,6 +28,9 @@
     },
     "README.md": {
       "checksum": "3900d9bc3344bf519e4cb156df2f1f1b"
+    },
+    "renv.lock": {
+      "checksum": "f5131aad0062ca56ef224eab245d33c9"
     }
   },
   "users": null
