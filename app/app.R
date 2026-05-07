@@ -14,7 +14,7 @@ library(shiny)
 ui <- fluidPage(
 
     # Application title
-    titlePanel("Observatoire de l'ASR"),
+    titlePanel("Observatoire"),
 
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
