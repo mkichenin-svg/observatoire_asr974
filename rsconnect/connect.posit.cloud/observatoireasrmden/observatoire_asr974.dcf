@@ -1,0 +1,10 @@
+name: observatoire_asr974
+title:
+username: observatoireasrmden
+account: observatoireasrmden
+server: connect.posit.cloud
+hostUrl: https://api.connect.posit.cloud/v1
+appId: 019e01c2-9203-c7fc-87db-ca2d8fbff1f9
+bundleId:
+url:
+version: 1
