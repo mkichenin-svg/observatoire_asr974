@@ -30,13 +30,7 @@ ui <- page_sidebar(
                                     "Ouest", "Plusieurs zones")
                     ),
                     
-                    sliderInput(
-                      "Montant",
-                      "Valeurs",
-                      min = 216000,
-                      max = 50000000,
-                      value = c(100000, 50000000)
-                    ),
+                  
                     
   ),
   
