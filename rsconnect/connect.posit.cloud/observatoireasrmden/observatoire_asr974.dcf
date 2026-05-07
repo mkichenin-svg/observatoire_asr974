@@ -4,7 +4,7 @@ username: observatoireasrmden
 account: observatoireasrmden
 server: connect.posit.cloud
 hostUrl: https://api.connect.posit.cloud/v1
-appId: 019e01c2-9203-c7fc-87db-ca2d8fbff1f9
+appId: 019e01cb-f644-d805-9f1a-b17c496a87b5
 bundleId:
-url:
+url: https://connect.posit.cloud/observatoireasrmden/content/019e01cb-f644-d805-9f1a-b17c496a87b5
 version: 1
