@@ -68,4 +68,4 @@ server <- function (input,output, session) {
 shinyApp(ui = ui, server = server)
 
 rsconnect::writeManifest()
-shiny::runApp(appDir)
+shiny::runApp(appDir = "C:\Users\mkichenin\Desktop\Observatoire\Observatoire_quantitatif\observatoire_asr974")
