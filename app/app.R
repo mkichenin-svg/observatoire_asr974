@@ -4,7 +4,7 @@ library(shiny)
 
 
 # Define UI for app that draws a histogram ----
-ui <- page_fluid(
+ui <- fluidPage(
   # App title ----
   title = "Hello Shiny!",
   # Sidebar panel for inputs ----
