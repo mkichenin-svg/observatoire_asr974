@@ -9,6 +9,13 @@ if (!requireNamespace("ggplot2", quietly = TRUE)) {
   install.packages("ggplot2")
 }
 library(ggplot2)
+
+if (requireNamespace("sf", quietly = TRUE)) {
+  library(sf)
+} else {
+  warning("sf package not available")
+}
+
 library(sf)
 library(viridisLite)
 
