@@ -2,18 +2,9 @@
 
 library(shiny)
 library(bslib)
-library(bsicons)
-library(shiny)
-library(maps)
-library(mapdata)
-library(treemap)
-library(treemapify)
-library(cowplot)
 library(ggplot2)
 library(sf)
 library(viridisLite)
-
-
 
 ui <- page_navbar( 
   title =  "Observatoire ASR ",
