@@ -1,5 +1,3 @@
-options(repos = c(CRAN = "https://cloud.r-project.org/"))
-
 # Charger les packages ------------------------------------------
 
 library(shiny)
@@ -17,7 +15,7 @@ library(sf)
 
 
 ui <- page_navbar( 
-  title =  "Observatoir ",
+  title =  "Observatoire de l'achat socialement responsable ",
   theme = bs_theme(bg = "white", fg = "black", primary = "blue",
                    base_font = font_google("Space Mono"),
                    code_font = font_google("Space Mono")),
@@ -48,7 +46,7 @@ ui <- page_navbar(
   
   # Première page
   
-  nav_panel("", p(
+  nav_panel("Statistiques générales", p(
     
     layout_column_wrap(
       value_box(title = "", value = "", height = 50),
@@ -80,13 +78,36 @@ ui <- page_navbar(
   
   # Deuxième page
   
-  nav_panel("", p("Content for Page ")),
+  nav_panel("La clause sociale d'insertion", p("Content for Page ")),
   
   # Troisième page
   
-  nav_panel("", p(
+  nav_panel("Les marchés réservés", p(
     
     
+    
+  )),
+  
+  
+  # page 4
+  
+  nav_panel("La clause de stage", p(
+    
+    
+    
+  )),
+  
+  # page 5
+  
+  nav_panel("Les critères d'attribution", p(
+    
+    
+    
+  )),
+  
+  # page 6
+  
+  nav_panel("SPASER", p(
     
   ))
   
