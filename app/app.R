@@ -7,7 +7,7 @@ library(sf)
 library(viridisLite)
 
 ui <- page_navbar( 
-  title =  "Observatoire ASR ",
+  title =  "Observatoir ",
   theme = bs_theme(bg = "white", fg = "black", primary = "blue",
                    base_font = font_google("Space Mono"),
                    code_font = font_google("Space Mono")),
