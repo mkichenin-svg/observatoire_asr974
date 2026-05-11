@@ -2,10 +2,6 @@
 
 library(shiny)
 library(bslib)
-
-if (!requireNamespace("ggplot2", quietly = TRUE)) {
-  install.packages("ggplot2")
-}
 library(ggplot2)
 
 library(sf)
@@ -48,37 +44,69 @@ ui <- page_navbar(
   
   nav_panel("Statistiques générales", p(
     
-    layout_column_wrap(
-      value_box(title = "", value = "", height = 50),
-      value_box(title = "", value = ""),
-      value_box(title = "", value = ""),
+    layout_column_wrap(height = "1px",
+      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "", height = 200, theme = "blue"),
+      value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "", height = 200),
+      value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "",height = 200),
     ),
     
     layout_column_wrap(
       
       card(
-        card_header(""),
+        card_header("Les outils utilisés"),
         
       ),
       
       card(
-        card_header("")
+        card_header("Les acteurs de l'asr")
       ),
       
       card(
-        card_header("")
-      ),
-      
-      card(
-        card_header("")
+        card_header("Comment abordez-vous la loi climat et résilience qui sera effective en août 2026")
       )
-      
       
     ))),
   
   # Deuxième page
   
-  nav_panel("La clause sociale d'insertion", p("Content for Page ")),
+  nav_panel("La clause sociale d'insertion", p(
+    
+    layout_column_wrap(height = "1px",
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CLAUSE SOCIALE D'INSERTION AYANT GÉNÉRÉS DES HEURES D'INSERTION EN 2025", value = "", height = 200, theme = "blue"),
+                       value_box(title = "NOMBRE D'HEURES D'INSERTION RÉALISÉES EN 2025", value = "", height = 200),
+                       value_box(title = "NOMBRE DE BÉNÉFICIAIRES AYANT RÉALISÉ DES HEURES D'INSERTION EN 2025", value = "",height = 200),
+    ),
+    
+    layout_column_wrap(
+      
+      card(
+        card_header("Âge des bénéficiaires"),
+        
+      ),
+      
+      card(
+        card_header("QPV")
+      ),
+      
+      card(
+        card_header("Qualification")
+      ),
+      card(
+        card_header("Homme/Femmes")
+      ),
+    ),
+    
+    layout_column_wrap(
+      
+      card(
+        card_header("Les types de contrats"),
+        
+      ),
+     
+    ),
+    
+    
+    )),
   
   # Troisième page
   
