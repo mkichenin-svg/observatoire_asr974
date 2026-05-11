@@ -3,22 +3,20 @@
 library(shiny)
 library(bslib)
 library(ggplot2)
-
 library(sf)
 
+shapefile <-read_sf("communes/communesPolygon.shp")
 
-
+shapefile1 <- as.data.frame(shapefile)
+shapefile1
 
 
 ui <- page_navbar( 
-  title =  "Observatoire de l'achat socialement responsable ",
-  theme = bs_theme(bg = "white", fg = "black", primary = "blue",
-                   base_font = font_google("Space Mono"),
-                   code_font = font_google("Space Mono")),
-  
+  title =  "OBSERVATOIRE DE L’ACHAT SOCIALEMENT RESPONSABLE À LA RÉUNION (2025) ",
+  theme = bs_theme(bootswatch = "minty"),
   sidebar =  sidebarPanel(
     
-    width = 250,
+    width = 12,
     
     imageOutput("image", height = 150), 
     
@@ -31,9 +29,9 @@ ui <- page_navbar(
     selectInput(
       "zone",
       "Sélectionnez la zone d'activité",
-      choices = c("Nord", "Sud", "Ouest", "Est")),
+      choices = c("Nord", "Est", "Sud", "Ouest")),
     
-    plotOutput("map", width = 250, height = 250)
+    plotOutput("map", width = 180, height = 200)
     
     
   ),
@@ -45,9 +43,9 @@ ui <- page_navbar(
   nav_panel("Statistiques générales", p(
     
     layout_column_wrap(height = "1px",
-      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "", height = 200, theme = "blue"),
-      value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "", height = 200),
-      value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "",height = 200),
+      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
+      value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
+      value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "",height = 200, theme = "blue"),
     ),
     
     layout_column_wrap(
@@ -61,20 +59,28 @@ ui <- page_navbar(
         card_header("Les acteurs de l'asr")
       ),
       
+      
+    ),
+    
+    layout_column_wrap(
+      
+      
       card(
         card_header("Comment abordez-vous la loi climat et résilience qui sera effective en août 2026")
       )
       
-    ))),
+    )
+    
+    )),
   
   # Deuxième page
   
   nav_panel("La clause sociale d'insertion", p(
     
     layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CLAUSE SOCIALE D'INSERTION AYANT GÉNÉRÉS DES HEURES D'INSERTION EN 2025", value = "", height = 200, theme = "blue"),
-                       value_box(title = "NOMBRE D'HEURES D'INSERTION RÉALISÉES EN 2025", value = "", height = 200),
-                       value_box(title = "NOMBRE DE BÉNÉFICIAIRES AYANT RÉALISÉ DES HEURES D'INSERTION EN 2025", value = "",height = 200),
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CLAUSE SOCIALE D'INSERTION AYANT GÉNÉRÉS DES HEURES D'INSERTION EN 2025", value = "", height = 200, theme = "green"),
+                       value_box(title = "NOMBRE D'HEURES D'INSERTION RÉALISÉES EN 2025", value = "", height = 200, theme = "blue"),
+                       value_box(title = "NOMBRE DE BÉNÉFICIAIRES AYANT RÉALISÉ DES HEURES D'INSERTION EN 2025", value = "",height = 200, theme = "blue"),
     ),
     
     layout_column_wrap(
@@ -111,7 +117,31 @@ ui <- page_navbar(
   # Troisième page
   
   nav_panel("Les marchés réservés", p(
+      
+      layout_column_wrap(height = "1px",
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS SIAE ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS STPA ATTRIBUÉS EN 2025", value = "",height = 200, theme = "green"),
+      ),  
     
+      
+      layout_column_wrap(
+        
+        card(
+          card_header("SIAE (STRUCTURES D'INSERTION PAR L'ACTIVITÉ ÉCONOMIQUE)"),
+          
+        ),
+      ),
+      
+      layout_column_wrap(
+        
+        card(
+          card_header("STPA (SECTEUR DU TRAVAIL PROTÉGÉ ET ADAPTÉ)"),
+          
+        ),
+        
+      ),
+      
     
     
   )),
@@ -121,6 +151,12 @@ ui <- page_navbar(
   
   nav_panel("La clause de stage", p(
     
+    layout_column_wrap(height = "1px",
+                       value_box(title = "NOMBRE DE MARCHÉS AYANT GÉNÉRÉS DES HEURES DE STAGE EN 2025", value = "", height = 200, theme = "green"),
+                       value_box(title = "NOMBRE D'HEURES DE STAGE RÉALISÉES EN 2025", value = "", height = 200, theme = "blue"),
+                       value_box(title = "NOMBRE DE STAGIAIRE EN 2025", value = "",height = 200, theme = "blue"),
+    ),  
+    
     
     
   )),
@@ -128,6 +164,12 @@ ui <- page_navbar(
   # page 5
   
   nav_panel("Les critères d'attribution", p(
+    
+    layout_column_wrap(height = "1px",
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UN CRITÈRE D'ATTRIBUTION SOCIAL ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
+                       value_box(title = "NIVEAU MOYEN DE PONDÉRATION RELATIF AU CRITÈRE D'ATTRIBUTION SOCIAL (%)", value = "", height = 200, theme = "green"),
+  
+    ),  
     
     
     
@@ -148,24 +190,82 @@ ui <- page_navbar(
 # Define server logic required to draw a histogram ----
 server <- function(input, output) {
   
-  # Histogram of the Old Faithful Geyser Data ----
-  # with requested number of bins
-  # This expression that generates a histogram is wrapped in a call
-  # to renderPlot to indicate that:
-  #
-  # 1. It is "reactive" and therefore should be automatically
-  #    re-executed when inputs (input$bins) change
-  # 2. Its output type is a plot
-  output$distPlot <- renderPlot({
+
+  
+  
+output$image <- renderImage( 
+    { 
+      list(src = "logo.png", height = "30%") 
+    }, 
+    deleteFile = FALSE 
+  ) 
+  
+# carte
+ 
+output$map <- renderPlot({ 
     
-    x    <- faithful$waiting
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
     
-    hist(x, breaks = bins, col = "#007bc2", border = "white",
-         xlab = "Waiting time to next eruption (in mins)",
-         main = "Histogram of waiting times")
+    r <-  ggplot() + geom_sf(data=shapefile, color = "black") +
+      geom_sf(data= shapefile[5,], color = "blue")+
+      geom_sf(data= shapefile[2,], color = "blue")+
+      geom_sf(data= shapefile[1,], color = "blue")+
+      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
-  })
+    Nord <- ggplot() + geom_sf(data=shapefile, color = "black") +
+      geom_sf(data= shapefile[5,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[2,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[1,], color = "black", fill="blue")+
+      theme_minimal()+
+      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
+    
+    
+    Est <- ggplot() + geom_sf(data=shapefile, color = "black") +
+      geom_sf(data= shapefile[3,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[4,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[6,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[7,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[8,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[9,],  color = "black", fill="blue")+
+      theme_minimal()+
+      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
+    
+    
+    
+    Sud <- ggplot() + geom_sf(data=shapefile, color = "black") +
+      geom_sf(data= shapefile[19,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[15,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[22,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[16,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[13,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[24,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[23,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[14,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[12,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[21,],  color = "black", fill="blue")+
+      theme_minimal()+
+     theme(axis.text.x = element_blank(), axis.text.y = element_blank())
+    
+    Ouest <- ggplot() + geom_sf(data=shapefile, color = "black") +
+      geom_sf(data= shapefile[10,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[11,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[17,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[18,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[20,],  color = "black", fill="blue")+
+      theme_minimal()+
+      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
+    
+    
+    switch(input$zone,
+           "Nord" = Nord,
+           "Sud" = Sud,
+           "Ouest" = Ouest,
+           "Est" = Est
+    )
+    
+  }) 
+  
+  
+    
   
 }
 
