@@ -1,7 +1,6 @@
 # Charger les packages ------------------------------------------
 
 library(shiny)
-library(plotly)
 library(reactable)
 library(bslib)
 library(bsicons)
