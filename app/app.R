@@ -4,6 +4,7 @@ library(shiny)
 library(bslib)
 library(ggplot2)
 library(sf)
+library(tibble)
 
 shapefile <-read_sf("communes/communesPolygon.shp")
 
