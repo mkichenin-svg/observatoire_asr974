@@ -5,6 +5,7 @@ library(bslib)
 library(ggplot2)
 library(sf)
 library(tibble)
+library(bsicons)
 
 shapefile <-read_sf("communes/communesPolygon.shp")
 
@@ -13,11 +14,11 @@ shapefile1
 
 
 ui <- page_navbar( 
-  title =  "OBSERVATOIRE DE L’ACHAT SOCIALEMENT RESPONSABLE À LA RÉUNION (2025) ",
+  title  = "OBSERVATOIRE DE L’ACHAT SOCIALEMENT RESPONSABLE À LA RÉUNION ",
   theme = bs_theme(bootswatch = "minty"),
   sidebar =  sidebarPanel(
+  width = 12,
     
-    width = 12,
     
     imageOutput("image", height = 150), 
     
@@ -29,10 +30,10 @@ ui <- page_navbar(
     
     selectInput(
       "zone",
-      "Sélectionnez la zone d'activité",
-      choices = c("Nord", "Est", "Sud", "Ouest")),
+      "Zone d'activité",
+      choices = c( "Vue d'ensemble","Nord", "Est", "Sud", "Ouest", "2 à 4 zones")),
     
-    plotOutput("map", width = 180, height = 200)
+    plotOutput("map", width = 197, height = 197)
     
     
   ),
@@ -44,20 +45,20 @@ ui <- page_navbar(
   nav_panel("Statistiques générales", p(
     
     layout_column_wrap(height = "1px",
-      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
-      value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
-      value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "",height = 200, theme = "blue"),
+      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green"),
+      value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green", showcase = bsicons::bs_icon('hand-thumbs-up')),
+      value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "0",height = 200, theme = "blue", showcase = bsicons::bs_icon('clock-history')),
     ),
     
     layout_column_wrap(
       
       card(
-        card_header("Les outils utilisés"),
+        card_header("LES OUTILS ASR UTILISÉS"),
         
       ),
       
       card(
-        card_header("Les acteurs de l'asr")
+        card_header("LES ACTEURS DE L'ASR")
       ),
       
       
@@ -67,7 +68,7 @@ ui <- page_navbar(
       
       
       card(
-        card_header("Comment abordez-vous la loi climat et résilience qui sera effective en août 2026")
+        card_header("Comment abordez-vous la loi climat et résilience (effective en août 2026)?")
       )
       
     )
@@ -79,9 +80,9 @@ ui <- page_navbar(
   nav_panel("La clause sociale d'insertion", p(
     
     layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CLAUSE SOCIALE D'INSERTION AYANT GÉNÉRÉS DES HEURES D'INSERTION EN 2025", value = "", height = 200, theme = "green"),
-                       value_box(title = "NOMBRE D'HEURES D'INSERTION RÉALISÉES EN 2025", value = "", height = 200, theme = "blue"),
-                       value_box(title = "NOMBRE DE BÉNÉFICIAIRES AYANT RÉALISÉ DES HEURES D'INSERTION EN 2025", value = "",height = 200, theme = "blue"),
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CLAUSE SOCIALE D'INSERTION AYANT GÉNÉRÉS DES HEURES D'INSERTION EN 2025", value = "0", height = 200, theme = "green"),
+                       value_box(title = "NOMBRE D'HEURES D'INSERTION RÉALISÉES EN 2025", value = "0", height = 200, theme = "blue",showcase = bsicons::bs_icon('clock-history')),
+                       value_box(title = "NOMBRE DE BÉNÉFICIAIRES AYANT RÉALISÉ DES HEURES D'INSERTION EN 2025", value = "0",height = 200, theme = "blue",showcase = bsicons::bs_icon('person-check')),
     ),
     
     layout_column_wrap(
@@ -90,20 +91,23 @@ ui <- page_navbar(
         card_header("Âge des bénéficiaires"),
         
       ),
+    
       
       card(
-        card_header("QPV")
+        card_header("Homme/Femmes")
       ),
+      
+      card(
+        card_header("Bénéficaires provenant des QPV (Quartiers Prioritaires de la Ville)")
+      ),
+      
+    ),
+    
+    layout_column_wrap(
       
       card(
         card_header("Qualification")
       ),
-      card(
-        card_header("Homme/Femmes")
-      ),
-    ),
-    
-    layout_column_wrap(
       
       card(
         card_header("Les types de contrats"),
@@ -120,9 +124,9 @@ ui <- page_navbar(
   nav_panel("Les marchés réservés", p(
       
       layout_column_wrap(height = "1px",
-                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
-                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS SIAE ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
-                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS STPA ATTRIBUÉS EN 2025", value = "",height = 200, theme = "green"),
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green"),
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS SIAE ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green"),
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS STPA ATTRIBUÉS EN 2025", value = "0",height = 200, theme = "green"),
       ),  
     
       
@@ -130,7 +134,8 @@ ui <- page_navbar(
         
         card(
           card_header("SIAE (STRUCTURES D'INSERTION PAR L'ACTIVITÉ ÉCONOMIQUE)"),
-          
+          p("Types de structures SIAE"),
+          p("Heures d'insertions SIAE valorisés")
         ),
       ),
       
@@ -138,7 +143,8 @@ ui <- page_navbar(
         
         card(
           card_header("STPA (SECTEUR DU TRAVAIL PROTÉGÉ ET ADAPTÉ)"),
-          
+          p("Types de structures STPA"),
+          p("Heures d'insertions STPA valorisés")
         ),
         
       ),
@@ -153,11 +159,27 @@ ui <- page_navbar(
   nav_panel("La clause de stage", p(
     
     layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AYANT GÉNÉRÉS DES HEURES DE STAGE EN 2025", value = "", height = 200, theme = "green"),
-                       value_box(title = "NOMBRE D'HEURES DE STAGE RÉALISÉES EN 2025", value = "", height = 200, theme = "blue"),
-                       value_box(title = "NOMBRE DE STAGIAIRE EN 2025", value = "",height = 200, theme = "blue"),
+                       value_box(title = "NOMBRE DE MARCHÉS AYANT GÉNÉRÉS DES HEURES DE STAGE EN 2025", value = "0", height = 200, theme = "green"),
+                       value_box(title = "NOMBRE D'HEURES DE STAGE RÉALISÉES EN 2025", value = "0", height = 200, theme = "blue",showcase = bsicons::bs_icon('clock-history')),
+                       value_box(title = "NOMBRE DE STAGIAIRE EN 2025", value = "0",height = 200, theme = "blue",showcase = bsicons::bs_icon('person-check')),
     ),  
     
+    
+    layout_column_wrap(
+      
+      card(
+        card_header("Types de stagiaires"),
+        p("Lycéens? Étudiants? Demandeurs d'emploi?"),
+      ),
+
+      
+      card(
+        card_header("Durée des stages"),
+        p("< 1 mois, 1 à 3 mois, 4 à 6 mois, + 6 mois")
+      
+      ),
+      
+    ),  
     
     
   )),
@@ -167,8 +189,8 @@ ui <- page_navbar(
   nav_panel("Les critères d'attribution", p(
     
     layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AVEC UN CRITÈRE D'ATTRIBUTION SOCIAL ATTRIBUÉS EN 2025", value = "", height = 200, theme = "green"),
-                       value_box(title = "NIVEAU MOYEN DE PONDÉRATION RELATIF AU CRITÈRE D'ATTRIBUTION SOCIAL (%)", value = "", height = 200, theme = "green"),
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UN CRITÈRE D'ATTRIBUTION SOCIAL ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green"),
+                       value_box(title = "NIVEAU MOYEN DE PONDÉRATION RELATIF AU CRITÈRE D'ATTRIBUTION SOCIAL (%)", value = "0", height = 200, theme = "green"),
   
     ),  
     
@@ -207,10 +229,33 @@ output$map <- renderPlot({
     
     
     r <-  ggplot() + geom_sf(data=shapefile, color = "black") +
-      geom_sf(data= shapefile[5,], color = "blue")+
-      geom_sf(data= shapefile[2,], color = "blue")+
-      geom_sf(data= shapefile[1,], color = "blue")+
-      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
+      geom_sf(data= shapefile[5,], color = "black")+
+      geom_sf(data= shapefile[2,], color = "black")+
+      geom_sf(data= shapefile[1,], color = "black")+
+      geom_sf(data= shapefile[3,], color = "black")+
+      geom_sf(data= shapefile[4,],  color = "black")+
+      geom_sf(data= shapefile[6,],  color = "black")+
+      geom_sf(data= shapefile[7,],  color = "black")+
+      geom_sf(data= shapefile[8,],  color = "black")+
+      geom_sf(data= shapefile[9,],  color = "black")+
+      geom_sf(data= shapefile[19,], color = "black")+
+      geom_sf(data= shapefile[15,],  color = "black")+
+      geom_sf(data= shapefile[22,],  color = "black")+
+      geom_sf(data= shapefile[16,],  color = "black")+
+      geom_sf(data= shapefile[13,],  color = "black")+
+      geom_sf(data= shapefile[24,],  color = "black")+
+      geom_sf(data= shapefile[23,],  color = "black")+
+      geom_sf(data= shapefile[14,],  color = "black")+
+      geom_sf(data= shapefile[12,],  color = "black")+
+      geom_sf(data= shapefile[21,],  color = "black")+
+      geom_sf(data= shapefile[10,], color = "black")+
+      geom_sf(data= shapefile[11,],  color = "black")+
+      geom_sf(data= shapefile[17,],  color = "black")+
+      geom_sf(data= shapefile[18,],  color = "black")+
+      geom_sf(data= shapefile[20,],  color = "black")+
+      theme_minimal()+
+      theme(axis.text.x = element_blank(), 
+            axis.text.y = element_blank())
     
     Nord <- ggplot() + geom_sf(data=shapefile, color = "black") +
       geom_sf(data= shapefile[5,], color = "black", fill="blue")+
@@ -256,11 +301,42 @@ output$map <- renderPlot({
       theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
     
+multi <-  ggplot() + geom_sf(data=shapefile, color = "black", fill="blue") +
+      geom_sf(data= shapefile[5,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[2,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[1,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[3,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[4,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[6,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[7,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[8,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[9,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[19,],color = "black",fill="blue")+
+      geom_sf(data= shapefile[15,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[22,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[16,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[13,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[24,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[23,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[14,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[12,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[21,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[10,], color = "black",fill="blue")+
+      geom_sf(data= shapefile[11,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[17,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[18,],  color = "black",fill="blue")+
+      geom_sf(data= shapefile[20,],  color = "black",fill="blue")+
+      theme_minimal()+
+      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
+    
+    
     switch(input$zone,
+           "Vue d'ensemble" = r,
            "Nord" = Nord,
            "Sud" = Sud,
            "Ouest" = Ouest,
-           "Est" = Est
+           "Est" = Est,
+           "2 à 4 zones" = multi
     )
     
   }) 
