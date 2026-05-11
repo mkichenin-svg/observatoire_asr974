@@ -1765,7 +1765,28 @@
       "checksum": "40538e09e3b2be609e63a8498b6814e1"
     },
     "app.R": {
-      "checksum": "7373940df017b8c1706c907cd971d07d"
+      "checksum": "def0ae180d7bc51939058d2d5c66d358"
+    },
+    "communes/communesPolygon.cst": {
+      "checksum": "0e4bb4efc30ec129e5003a18ea2103cf"
+    },
+    "communes/communesPolygon.dbf": {
+      "checksum": "5dffb5bc64ef287c74e30dccec1dcd75"
+    },
+    "communes/communesPolygon.prj": {
+      "checksum": "fd5f7743511a9bdfb1ab15f504d29c1f"
+    },
+    "communes/communesPolygon.shp": {
+      "checksum": "017f372a190d480c1360f63bd1d57606"
+    },
+    "communes/communesPolygon.shx": {
+      "checksum": "90b39e36c273c8cda4c097c0d2da6225"
+    },
+    "communes/wfsrequest.txt": {
+      "checksum": "bb7fa4902fa7815056e33964ab7c51bc"
+    },
+    "logo.png": {
+      "checksum": "8db27e3c14374ae94143eed3dbb327b5"
     }
   },
   "users": null
