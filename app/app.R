@@ -1,13 +1,9 @@
 # Charger les packages ------------------------------------------
 
 library(shiny)
-library(reactable)
 library(bslib)
 library(bsicons)
 library(shiny)
-library(reticulate)
-library(rnaturalearth)
-library(rnaturalearthdata)
 library(maps)
 library(mapdata)
 library(treemap)
@@ -16,8 +12,7 @@ library(cowplot)
 library(ggplot2)
 library(sf)
 library(viridisLite)
-library(here)
-library(jsonlite)
+
 
 
 ui <- page_navbar( 
