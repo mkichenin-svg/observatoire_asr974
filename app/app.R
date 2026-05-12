@@ -14,26 +14,28 @@ shapefile1
 
 
 ui <- page_navbar( 
-  title  = "OBSERVATOIRE DE L’ACHAT SOCIALEMENT RESPONSABLE À LA RÉUNION ",
-  theme = bs_theme(bootswatch = "minty"),
+  title = "OBSERVATOIRE DE L’ACHAT SOCIALEMENT RESPONSABLE",
+  theme = bs_theme(version = 5, bootswatch = "cosmo"),
   sidebar =  sidebarPanel(
   width = 12,
     
-    
+# output sidebar
+
     imageOutput("image", height = 150), 
     
-    checkboxGroupInput(
+     checkboxGroupInput(
       "checkGroup",
       "Segment d'achat",
       choices = list("Travaux" = 1, "Services" = 2, "Fournitures" = 3, "Prestations intellectuelles" = 4),
       selected = 1),
-    
-    selectInput(
-      "zone",
+
+
+     selectInput(
+     "zone",
       "Zone d'activité",
       choices = c( "Vue d'ensemble","Nord", "Est", "Sud", "Ouest", "2 à 4 zones")),
-    
-    plotOutput("map", width = 197, height = 197)
+
+     plotOutput("map", width = 197, height = 197),
     
     
   ),
@@ -45,33 +47,33 @@ ui <- page_navbar(
   nav_panel("Statistiques générales", p(
     
     layout_column_wrap(height = "1px",
-      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green"),
-      value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green", showcase = bsicons::bs_icon('hand-thumbs-up')),
-      value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "0",height = 200, theme = "blue", showcase = bsicons::bs_icon('clock-history')),
+      value_box(title = "NOMBRE DE STRUCTURES INTEROGÉES ET CONCERNÉES", value = "0", height = 75, theme = "blue",showcase = bsicons::bs_icon('building-check')),
+      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "0", height = 400, theme = "blue"),
+     
     ),
+    
+    layout_column_wrap(height = "1px",
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "0", height = 400, theme = "blue", showcase = bsicons::bs_icon('hand-thumbs-up')),
+                       value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "0",height = 400, theme = "teal", showcase = bsicons::bs_icon('clock-history')),
+    ),
+    
     
     layout_column_wrap(
       
       card(
         card_header("LES OUTILS ASR UTILISÉS"),
+        plotOutput("outils", height = 75)
         
       ),
       
       card(
-        card_header("LES ACTEURS DE L'ASR")
-      ),
+        card_header("Comment abordez-vous la loi climat et résilience (effective en août 2026)?"),
+        plotOutput("", height = 87)
+      )
       
       
     ),
     
-    layout_column_wrap(
-      
-      
-      card(
-        card_header("Comment abordez-vous la loi climat et résilience (effective en août 2026)?")
-      )
-      
-    )
     
     )),
   
@@ -79,26 +81,29 @@ ui <- page_navbar(
   
   nav_panel("La clause sociale d'insertion", p(
     
-    layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CLAUSE SOCIALE D'INSERTION AYANT GÉNÉRÉS DES HEURES D'INSERTION EN 2025", value = "0", height = 200, theme = "green"),
-                       value_box(title = "NOMBRE D'HEURES D'INSERTION RÉALISÉES EN 2025", value = "0", height = 200, theme = "blue",showcase = bsicons::bs_icon('clock-history')),
-                       value_box(title = "NOMBRE DE BÉNÉFICIAIRES AYANT RÉALISÉ DES HEURES D'INSERTION EN 2025", value = "0",height = 200, theme = "blue",showcase = bsicons::bs_icon('person-check')),
+    layout_column_wrap(
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CLAUSE SOCIALE D'INSERTION AYANT GÉNÉRÉS DES HEURES D'INSERTION EN 2025", value = "0", height = 200, theme = "blue"),
+                       value_box(title = "NOMBRE D'HEURES D'INSERTION RÉALISÉES EN 2025", value = "0", height = 200, theme = "teal",showcase = bsicons::bs_icon('clock-history')),
+                       value_box(title = "NOMBRE DE BÉNÉFICIAIRES AYANT RÉALISÉ DES HEURES D'INSERTION EN 2025", value = "0",height = 200, theme = "teal",showcase = bsicons::bs_icon('person-check')),
     ),
     
     layout_column_wrap(
       
       card(
         card_header("Âge des bénéficiaires"),
+        plotOutput("", height = 85)
         
       ),
     
       
       card(
-        card_header("Homme/Femmes")
+        card_header("Hommes/Femmes"),
+        plotOutput("", height = 85)
       ),
       
       card(
-        card_header("Bénéficaires provenant des QPV (Quartiers Prioritaires de la Ville)")
+        card_header("Bénéficaires provenant des QPV"),
+        plotOutput("", height = 85)
       ),
       
     ),
@@ -106,11 +111,13 @@ ui <- page_navbar(
     layout_column_wrap(
       
       card(
-        card_header("Qualification")
+        card_header("Niveau de qualification des bénérficaires"),
+        plotOutput("", height = 85)
       ),
       
       card(
         card_header("Les types de contrats"),
+        plotOutput("", height = 85)
         
       ),
      
@@ -124,9 +131,9 @@ ui <- page_navbar(
   nav_panel("Les marchés réservés", p(
       
       layout_column_wrap(height = "1px",
-                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green"),
-                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS SIAE ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green"),
-                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS STPA ATTRIBUÉS EN 2025", value = "0",height = 200, theme = "green"),
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "blue"),
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS SIAE ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "blue"),
+                         value_box(title = "NOMBRE DE MARCHÉS RÉSERVÉS STPA ATTRIBUÉS EN 2025", value = "0",height = 200, theme = "blue"),
       ),  
     
       
@@ -134,8 +141,12 @@ ui <- page_navbar(
         
         card(
           card_header("SIAE (STRUCTURES D'INSERTION PAR L'ACTIVITÉ ÉCONOMIQUE)"),
-          p("Types de structures SIAE"),
-          p("Heures d'insertions SIAE valorisés")
+          height = 90,
+          layout_column_wrap(
+            plotOutput("siae"),
+            value_box(title = "Nombre d'heures SIAE valorisées en 2025", value = "0", height = 200, theme = "teal",showcase = bsicons::bs_icon('clock-history'))
+            
+            )
         ),
       ),
       
@@ -143,8 +154,12 @@ ui <- page_navbar(
         
         card(
           card_header("STPA (SECTEUR DU TRAVAIL PROTÉGÉ ET ADAPTÉ)"),
-          p("Types de structures STPA"),
-          p("Heures d'insertions STPA valorisés")
+          height = 90,
+          layout_column_wrap(
+          plotOutput("stpa"),
+          value_box(title = "Nombre d'heures STPA valorisées en 2025", value = "0", height = 200, theme = "teal",showcase = bsicons::bs_icon('clock-history'))
+          
+          )
         ),
         
       ),
@@ -159,9 +174,9 @@ ui <- page_navbar(
   nav_panel("La clause de stage", p(
     
     layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AYANT GÉNÉRÉS DES HEURES DE STAGE EN 2025", value = "0", height = 200, theme = "green"),
-                       value_box(title = "NOMBRE D'HEURES DE STAGE RÉALISÉES EN 2025", value = "0", height = 200, theme = "blue",showcase = bsicons::bs_icon('clock-history')),
-                       value_box(title = "NOMBRE DE STAGIAIRE EN 2025", value = "0",height = 200, theme = "blue",showcase = bsicons::bs_icon('person-check')),
+                       value_box(title = "NOMBRE DE MARCHÉS AYANT GÉNÉRÉS DES HEURES DE STAGE EN 2025", value = "0", height = 200, theme = "blue"),
+                       value_box(title = "NOMBRE D'HEURES DE STAGE RÉALISÉES EN 2025", value = "0", height = 200, theme = "teal",showcase = bsicons::bs_icon('clock-history')),
+                       value_box(title = "NOMBRE DE STAGIAIRE EN 2025", value = "0",height = 200, theme = "teal",showcase = bsicons::bs_icon('person-check')),
     ),  
     
     
@@ -189,8 +204,8 @@ ui <- page_navbar(
   nav_panel("Les critères d'attribution", p(
     
     layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AVEC UN CRITÈRE D'ATTRIBUTION SOCIAL ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "green"),
-                       value_box(title = "NIVEAU MOYEN DE PONDÉRATION RELATIF AU CRITÈRE D'ATTRIBUTION SOCIAL (%)", value = "0", height = 200, theme = "green"),
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UN CRITÈRE D'ATTRIBUTION SOCIAL ATTRIBUÉS EN 2025", value = "0", height = 200, theme = "blue"),
+                       value_box(title = "NIVEAU MOYEN DE PONDÉRATION RELATIF AU CRITÈRE D'ATTRIBUTION SOCIAL (%)", value = "0", height = 200, theme = "teal"),
   
     ),  
     
@@ -258,74 +273,74 @@ output$map <- renderPlot({
             axis.text.y = element_blank())
     
     Nord <- ggplot() + geom_sf(data=shapefile, color = "black") +
-      geom_sf(data= shapefile[5,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[2,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[1,], color = "black", fill="blue")+
+      geom_sf(data= shapefile[5,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[2,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[1,], color = "black", fill="royalblue")+
       theme_minimal()+
       theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
     
     Est <- ggplot() + geom_sf(data=shapefile, color = "black") +
-      geom_sf(data= shapefile[3,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[4,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[6,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[7,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[8,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[9,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[3,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[4,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[6,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[7,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[8,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[9,],  color = "black", fill="royalblue")+
       theme_minimal()+
       theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
     
     
     Sud <- ggplot() + geom_sf(data=shapefile, color = "black") +
-      geom_sf(data= shapefile[19,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[15,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[22,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[16,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[13,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[24,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[23,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[14,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[12,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[21,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[19,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[15,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[22,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[16,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[13,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[24,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[23,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[14,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[12,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[21,],  color = "black", fill="royalblue")+
       theme_minimal()+
      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
     Ouest <- ggplot() + geom_sf(data=shapefile, color = "black") +
-      geom_sf(data= shapefile[10,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[11,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[17,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[18,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[20,],  color = "black", fill="blue")+
+      geom_sf(data= shapefile[10,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[11,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[17,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[18,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[20,],  color = "black", fill="royalblue")+
       theme_minimal()+
       theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
     
-multi <-  ggplot() + geom_sf(data=shapefile, color = "black", fill="blue") +
-      geom_sf(data= shapefile[5,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[2,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[1,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[3,], color = "black", fill="blue")+
-      geom_sf(data= shapefile[4,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[6,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[7,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[8,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[9,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[19,],color = "black",fill="blue")+
-      geom_sf(data= shapefile[15,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[22,],  color = "black", fill="blue")+
-      geom_sf(data= shapefile[16,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[13,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[24,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[23,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[14,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[12,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[21,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[10,], color = "black",fill="blue")+
-      geom_sf(data= shapefile[11,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[17,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[18,],  color = "black",fill="blue")+
-      geom_sf(data= shapefile[20,],  color = "black",fill="blue")+
+multi <-  ggplot() + geom_sf(data=shapefile, color = "black", fill="royalblue") +
+      geom_sf(data= shapefile[5,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[2,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[1,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[3,], color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[4,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[6,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[7,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[8,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[9,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[19,],color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[15,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[22,],  color = "black", fill="royalblue")+
+      geom_sf(data= shapefile[16,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[13,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[24,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[23,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[14,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[12,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[21,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[10,], color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[11,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[17,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[18,],  color = "black",fill="royalblue")+
+      geom_sf(data= shapefile[20,],  color = "black",fill="royalblue")+
       theme_minimal()+
       theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
@@ -341,8 +356,34 @@ multi <-  ggplot() + geom_sf(data=shapefile, color = "black", fill="blue") +
     
   }) 
   
-  
-    
+# stat général
+ 
+output$outils <- renderPlot( 
+  { 
+    ggplot() + geom_line()
+  }) 
+
+#marchés réservés
+
+output$siae <- renderPlot( 
+  { 
+    ggplot() + geom_line() +ggtitle("TYPES DE STRUCTURES SIAE")
+  }) 
+
+
+
+
+output$stpa <- renderPlot( 
+  { 
+    ggplot() + geom_line() +ggtitle("TYPES DE STRUCTURES STPA")
+  }) 
+
+
+output$hstpa <- renderPlot( 
+  { 
+    ggplot() + geom_line() +ggtitle("Heures d'insertions STPA valorisés")
+  }) 
+
   
 }
 
