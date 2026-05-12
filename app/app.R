@@ -21,7 +21,7 @@ ui <- page_navbar(
     
 # output sidebar
 
-    imageOutput("image", height = 150), 
+    imageOutput("image", height = 140), 
     
      checkboxGroupInput(
       "checkGroup",
