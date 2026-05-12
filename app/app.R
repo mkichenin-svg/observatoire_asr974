@@ -18,7 +18,7 @@ ui <- page_navbar(
   # Custom CSS to change title size
   header = tags$style(HTML("
     .navbar .navbar-brand {
-      font-size: 15.9px;       /* Change this value to adjust size */
+      font-size: 15px;       /* Change this value to adjust size */
       font-weight: bold;     /* Optional: make it bold */
       color: #2c3e50;        /* Optional: change text color */
     }
