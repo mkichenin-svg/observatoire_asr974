@@ -56,8 +56,8 @@ ui <- page_navbar(
   nav_panel("Statistiques générales", p(
     
     layout_column_wrap(height = "1px",
-      value_box(title = "NOMBRE DE STRUCTURES INTEROGÉES ET CONCERNÉES", value = "0", height = 90, theme = "blue",showcase = bsicons::bs_icon('building-check')),
-      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "0", height = 90, theme = "blue"),
+      value_box(title = "NOMBRE DE STRUCTURES INTEROGÉES ET CONCERNÉES", value = "0", height = 100, theme = "blue",showcase = bsicons::bs_icon('building-check')),
+      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "0", height = 100, theme = "blue"),
      
     ),
     
@@ -71,13 +71,13 @@ ui <- page_navbar(
       
       card(
         card_header("LES OUTILS ASR UTILISÉS"),
-        plotOutput("outils", height = 150)
+        plotOutput("outils", height = 100)
         
       ),
       
       card(
         card_header("Comment abordez-vous la loi climat et résilience (effective en août 2026)?"),
-        plotOutput("", height = 150)
+        plotOutput("", height = 100)
       )
       
       
