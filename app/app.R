@@ -24,10 +24,9 @@ ui <- page_navbar(
     }
   ")),
   imageOutput("image", height = 140),
-  theme = bs_theme(version = 5, bootswatch = "superhero"),
+  theme = bs_theme(version = 5, bootswatch = "sandstone"),
   sidebar =  sidebarPanel(
   width = 12,
-  height = 12,
     
 # output sidebar
 
@@ -57,14 +56,14 @@ ui <- page_navbar(
   nav_panel("Statistiques générales", p(
     
     layout_column_wrap(height = "1px",
-      value_box(title = "NOMBRE DE STRUCTURES INTEROGÉES ET CONCERNÉES", value = "0", height = 75, theme = "blue",showcase = bsicons::bs_icon('building-check')),
-      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "0", height = 400, theme = "blue"),
+      value_box(title = "NOMBRE DE STRUCTURES INTEROGÉES ET CONCERNÉES", value = "0", height = 90, theme = "blue",showcase = bsicons::bs_icon('building-check')),
+      value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "0", height = 90, theme = "blue"),
      
     ),
     
     layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "0", height = 400, theme = "blue", showcase = bsicons::bs_icon('hand-thumbs-up')),
-                       value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "0",height = 400, theme = "teal", showcase = bsicons::bs_icon('clock-history')),
+                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "0", height = 90, theme = "blue", showcase = bsicons::bs_icon('hand-thumbs-up')),
+                       value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "0",height = 90, theme = "teal", showcase = bsicons::bs_icon('clock-history')),
     ),
     
     
@@ -72,13 +71,13 @@ ui <- page_navbar(
       
       card(
         card_header("LES OUTILS ASR UTILISÉS"),
-        plotOutput("outils", height = 75)
+        plotOutput("outils", height = 150)
         
       ),
       
       card(
         card_header("Comment abordez-vous la loi climat et résilience (effective en août 2026)?"),
-        plotOutput("", height = 87)
+        plotOutput("", height = 150)
       )
       
       
