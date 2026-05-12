@@ -23,9 +23,11 @@ ui <- page_navbar(
       color: #2c3e50;        /* Optional: change text color */
     }
   ")),
-  theme = bs_theme(version = 5, bootswatch = "cosmo"),
+  imageOutput("image", height = 140),
+  theme = bs_theme(version = 5, bootswatch = "superhero"),
   sidebar =  sidebarPanel(
   width = 12,
+  height = 12,
     
 # output sidebar
 
@@ -394,6 +396,7 @@ output$hstpa <- renderPlot(
 
   
 }
+
 
 
 # Run the app ----
