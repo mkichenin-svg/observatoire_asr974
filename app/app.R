@@ -14,7 +14,15 @@ shapefile1
 
 
 ui <- page_navbar( 
-  title = "OBSERVATOIRE DE L’ACHAT SOCIALEMENT RESPONSABLE",
+  title = div("OBSERVATOIRE DE L’ACHAT SOCIALEMENT RESPONSABLE À LA RÉUNION ", class="custom title"), 
+  # Custom CSS to change title size
+  header = tags$style(HTML("
+    .navbar .navbar-brand {
+      font-size: 15.9px;       /* Change this value to adjust size */
+      font-weight: bold;     /* Optional: make it bold */
+      color: #2c3e50;        /* Optional: change text color */
+    }
+  ")),
   theme = bs_theme(version = 5, bootswatch = "cosmo"),
   sidebar =  sidebarPanel(
   width = 12,
