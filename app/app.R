@@ -42,7 +42,7 @@ ui <- page_navbar(
      selectInput(
      "zone",
       "Zone d'activité",
-      choices = c( "Vue d'ensemble","Nord", "Est", "Sud", "Ouest", "2 à 4 zones")),
+      choices = c( "Vue d'ensemble","Nord", "Est", "Sud", "Ouest", "+ de 2 zones")),
 
      plotOutput("map", width = 197, height = 197),
     
@@ -246,35 +246,37 @@ output$image <- renderImage(
 # carte
  
 output$map <- renderPlot({ 
+  
+  
+r <- ggplot() + geom_sf(data=shapefile, color = "black", fill="orange") +
+    geom_sf(data= shapefile[5,], color = "black", fill="orange")+
+    geom_sf(data= shapefile[2,], color = "black", fill="orange")+
+    geom_sf(data= shapefile[1,], color = "black", fill="orange")+
+    geom_sf(data= shapefile[3,], color = "black", fill="orange")+
+    geom_sf(data= shapefile[4,],  color = "black", fill="orange")+
+    geom_sf(data= shapefile[6,],  color = "black", fill="orange")+
+    geom_sf(data= shapefile[7,],  color = "black", fill="orange")+
+    geom_sf(data= shapefile[8,],  color = "black", fill="orange")+
+    geom_sf(data= shapefile[9,],  color = "black", fill="orange")+
+    geom_sf(data= shapefile[19,],color = "black",fill="orange")+
+    geom_sf(data= shapefile[15,],  color = "black", fill="orange")+
+    geom_sf(data= shapefile[22,],  color = "black", fill="orange")+
+    geom_sf(data= shapefile[16,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[13,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[24,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[23,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[14,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[12,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[21,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[10,], color = "black",fill="orange")+
+    geom_sf(data= shapefile[11,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[17,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[18,],  color = "black",fill="orange")+
+    geom_sf(data= shapefile[20,],  color = "black",fill="orange")+
+    theme_minimal()+
+    theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
-    
-    r <-   ggplot() + geom_sf(data=shapefile, color = "black", fill="royalblue") +
-      geom_sf(data= shapefile[5,], color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[2,], color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[1,], color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[3,], color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[4,],  color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[6,],  color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[7,],  color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[8,],  color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[9,],  color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[19,],color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[15,],  color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[22,],  color = "black", fill="royalblue")+
-      geom_sf(data= shapefile[16,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[13,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[24,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[23,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[14,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[12,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[21,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[10,], color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[11,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[17,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[18,],  color = "black",fill="royalblue")+
-      geom_sf(data= shapefile[20,],  color = "black",fill="royalblue")+
-      theme_minimal()+
-      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
+
     
     Nord <- ggplot() + geom_sf(data=shapefile, color = "black") +
       geom_sf(data= shapefile[5,], color = "black", fill="royalblue")+
@@ -320,33 +322,33 @@ output$map <- renderPlot({
       theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
     
-multi <-  ggplot() + geom_sf(data=shapefile, color = "black", fill="orange") +
-      geom_sf(data= shapefile[5,], color = "black", fill="orange")+
-      geom_sf(data= shapefile[2,], color = "black", fill="orange")+
-      geom_sf(data= shapefile[1,], color = "black", fill="orange")+
-      geom_sf(data= shapefile[3,], color = "black", fill="orange")+
-      geom_sf(data= shapefile[4,],  color = "black", fill="orange")+
-      geom_sf(data= shapefile[6,],  color = "black", fill="orange")+
-      geom_sf(data= shapefile[7,],  color = "black", fill="orange")+
-      geom_sf(data= shapefile[8,],  color = "black", fill="orange")+
-      geom_sf(data= shapefile[9,],  color = "black", fill="orange")+
-      geom_sf(data= shapefile[19,],color = "black",fill="orange")+
-      geom_sf(data= shapefile[15,],  color = "black", fill="orange")+
-      geom_sf(data= shapefile[22,],  color = "black", fill="orange")+
-      geom_sf(data= shapefile[16,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[13,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[24,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[23,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[14,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[12,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[21,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[10,], color = "black",fill="orange")+
-      geom_sf(data= shapefile[11,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[17,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[18,],  color = "black",fill="orange")+
-      geom_sf(data= shapefile[20,],  color = "black",fill="orange")+
-      theme_minimal()+
-      theme(axis.text.x = element_blank(), axis.text.y = element_blank())
+multi <-   ggplot() + geom_sf(data=shapefile, color = "black", fill="royalblue") +
+  geom_sf(data= shapefile[5,], color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[2,], color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[1,], color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[3,], color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[4,],  color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[6,],  color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[7,],  color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[8,],  color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[9,],  color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[19,],color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[15,],  color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[22,],  color = "black", fill="royalblue")+
+  geom_sf(data= shapefile[16,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[13,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[24,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[23,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[14,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[12,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[21,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[10,], color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[11,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[17,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[18,],  color = "black",fill="royalblue")+
+  geom_sf(data= shapefile[20,],  color = "black",fill="royalblue")+
+  theme_minimal()+
+  theme(axis.text.x = element_blank(), axis.text.y = element_blank())
     
     
     switch(input$zone,
@@ -355,7 +357,7 @@ multi <-  ggplot() + geom_sf(data=shapefile, color = "black", fill="orange") +
            "Sud" = Sud,
            "Ouest" = Ouest,
            "Est" = Est,
-           "2 à 4 zones" = multi
+           "+ de 2 zones" = multi
     )
     
   }) 
