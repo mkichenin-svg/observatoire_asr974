@@ -56,14 +56,10 @@ ui <- page_navbar(
   nav_panel("Statistiques générales", p(
     
     layout_column_wrap(height = "1px",
-      value_box(title = "NOMBRE DE STRUCTURES INTERROGÉES ET CONCERNÉES", value = "0", height = 100, theme = "blue",showcase = bsicons::bs_icon('building-check')),
+      value_box(title = "NOMBRE DE STRUCTURES INTERROGÉES ET CONCERNÉES", value = "0", height = 100, theme = "teal",showcase = bsicons::bs_icon('building-check')),
       value_box(title = "NOMBRE DE MARCHÉS ATTRIBUÉS EN 2025", value = "0", height = 100, theme = "blue"),
+      value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "0", height = 90, theme = "blue", showcase = bsicons::bs_icon('hand-thumbs-up'))
      
-    ),
-    
-    layout_column_wrap(height = "1px",
-                       value_box(title = "NOMBRE DE MARCHÉS AVEC UNE CONSIDÉRATION SOCIALE ATTRIBUÉS EN 2025", value = "0", height = 90, theme = "blue", showcase = bsicons::bs_icon('hand-thumbs-up')),
-                       value_box(title = "NOMBRE TOTAL D'HEURES RÉALISÉES EN 2025", value = "0",height = 90, theme = "teal", showcase = bsicons::bs_icon('clock-history')),
     ),
     
     
@@ -151,24 +147,13 @@ ui <- page_navbar(
         card(
           card_header("SIAE (STRUCTURES D'INSERTION PAR L'ACTIVITÉ ÉCONOMIQUE)"),
           height = 90,
-          layout_column_wrap(
-            plotOutput("siae"),
-            value_box(title = "Nombre d'heures SIAE valorisées en 2025", value = "0", height = 200, theme = "teal",showcase = bsicons::bs_icon('clock-history'))
-            
-            )
+            plotOutput("siae")
         ),
-      ),
-      
-      layout_column_wrap(
         
         card(
           card_header("STPA (SECTEUR DU TRAVAIL PROTÉGÉ ET ADAPTÉ)"),
           height = 90,
-          layout_column_wrap(
-          plotOutput("stpa"),
-          value_box(title = "Nombre d'heures STPA valorisées en 2025", value = "0", height = 200, theme = "teal",showcase = bsicons::bs_icon('clock-history'))
-          
-          )
+          plotOutput("stpa")
         ),
         
       ),
