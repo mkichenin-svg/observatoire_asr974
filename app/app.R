@@ -12,7 +12,7 @@ library(htmlwidgets)
 library(htmltools)
 library(shinymanager)
 
-setwd("C:/Users/mkichenin/Desktop/Observatoire/Observatoire_quantitatif_a/observatoire_asr974/app")
+
 
 # define some credentials
 
